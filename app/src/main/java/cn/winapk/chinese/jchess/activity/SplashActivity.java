@@ -1,8 +1,9 @@
 package cn.winapk.chinese.jchess.activity;
 
 
-import android.app.Activity;
 import android.os.Bundle;
+
+import androidx.fragment.app.FragmentActivity;
 
 import com.blankj.utilcode.util.ActivityUtils;
 
@@ -16,7 +17,7 @@ import cn.winapk.chinese.jchess.xqwlight.Position;
  * Created by HZY on 2018/3/6.
  */
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends FragmentActivity {
 
     private static boolean mDataLoaded = false;
 
