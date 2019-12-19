@@ -35,9 +35,35 @@ allprojects {
         mavenCentral()
         google()
         jcenter()
+        maven {
+            url = "https://raw.githubusercontent.com/JarkimZhu/maven-snapshot/master/Repository"
+        }
     }
 }
 
+def parseLocalProperties() {
+    File file = rootProject.file('local.properties')
+    if(file.exists()) {
+        InputStream inputStream = rootProject.file('local.properties').newDataInputStream();
+        inputStream.withCloseable {
+            Properties properties = new Properties()
+            properties.load(it)
+
+            if (properties.containsKey("gradle.cache.dir")){
+                println 'gradle.cache.dir: '+properties.getProperty("gradle.cache.dir")
+                ext.gradleCacheDir = properties.getProperty("gradle.cache.dir")
+            }
+        }
+    }
+}
+
+parseLocalProperties()
+
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+task refreshSdk(type: Delete) {
+    delete "${gradleCacheDir}/files-2.1/cn.winapk.sdk"
+    delete "${gradleCacheDir}/metadata-2.71/descriptors/cn.winapk.sdk"
 }
