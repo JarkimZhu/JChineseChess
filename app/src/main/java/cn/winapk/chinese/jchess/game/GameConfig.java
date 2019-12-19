@@ -1,11 +1,10 @@
-package com.hzy.chinese.jchess.game;
+package cn.winapk.chinese.jchess.game;
 
-import com.hzy.chinese.jchess.R;
+import cn.winapk.chinese.jchess.R;
 
 /**
  * Created by HZY on 2018/3/8.
  */
-
 public class GameConfig {
 
     public static final String DAT_ASSETS_PATH = "book.dat";

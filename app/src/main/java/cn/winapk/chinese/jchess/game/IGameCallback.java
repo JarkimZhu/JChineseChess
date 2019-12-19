@@ -1,4 +1,4 @@
-package com.hzy.chinese.jchess.game;
+package cn.winapk.chinese.jchess.game;
 
 /**
  * Created by HZY on 2018/3/9.

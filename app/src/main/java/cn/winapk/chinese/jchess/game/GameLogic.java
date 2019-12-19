@@ -1,26 +1,15 @@
-package com.hzy.chinese.jchess.game;
-
-
-import com.hzy.chinese.jchess.R;
-import com.hzy.chinese.jchess.xqwlight.Position;
-import com.hzy.chinese.jchess.xqwlight.Search;
+package cn.winapk.chinese.jchess.game;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static com.hzy.chinese.jchess.game.GameConfig.RESP_CAPTURE;
-import static com.hzy.chinese.jchess.game.GameConfig.RESP_CAPTURE2;
-import static com.hzy.chinese.jchess.game.GameConfig.RESP_CHECK;
-import static com.hzy.chinese.jchess.game.GameConfig.RESP_CHECK2;
-import static com.hzy.chinese.jchess.game.GameConfig.RESP_CLICK;
-import static com.hzy.chinese.jchess.game.GameConfig.RESP_DRAW;
-import static com.hzy.chinese.jchess.game.GameConfig.RESP_ILLEGAL;
-import static com.hzy.chinese.jchess.game.GameConfig.RESP_LOSS;
-import static com.hzy.chinese.jchess.game.GameConfig.RESP_MOVE;
-import static com.hzy.chinese.jchess.game.GameConfig.RESP_MOVE2;
-import static com.hzy.chinese.jchess.game.GameConfig.RESP_WIN;
+import cn.winapk.chinese.jchess.R;
+import cn.winapk.chinese.jchess.xqwlight.Position;
+import cn.winapk.chinese.jchess.xqwlight.Search;
+
+import static cn.winapk.chinese.jchess.game.GameConfig.*;
 
 public class GameLogic implements Runnable {
 
@@ -273,7 +262,7 @@ public class GameLogic implements Runnable {
     }
 
     private void pushHistory(String fen) {
-        if (mHistoryList.size() >= GameConfig.MAX_HISTORY_SIZE) {
+        if (mHistoryList.size() >= MAX_HISTORY_SIZE) {
             mHistoryList.poll();
         }
         mHistoryList.offer(fen);

@@ -1,4 +1,4 @@
-package com.hzy.chinese.jchess.view;
+package cn.winapk.chinese.jchess.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,11 +11,11 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.hzy.chinese.jchess.R;
-import com.hzy.chinese.jchess.game.GameConfig;
-import com.hzy.chinese.jchess.game.GameLogic;
-import com.hzy.chinese.jchess.game.IGameView;
-import com.hzy.chinese.jchess.xqwlight.Position;
+import cn.winapk.chinese.jchess.R;
+import cn.winapk.chinese.jchess.game.GameConfig;
+import cn.winapk.chinese.jchess.game.GameLogic;
+import cn.winapk.chinese.jchess.game.IGameView;
+import cn.winapk.chinese.jchess.xqwlight.Position;
 
 /**
  * Created by HZY on 2018/3/8.

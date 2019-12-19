@@ -1,4 +1,4 @@
-package com.hzy.chinese.jchess.activity;
+package cn.winapk.chinese.jchess.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,11 +10,11 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.blankj.utilcode.util.AppUtils;
-import com.hzy.chinese.jchess.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.winapk.chinese.jchess.R;
 
 /**
  * Created by tangbull on 2018/3/27.

@@ -1,4 +1,4 @@
-package com.hzy.chinese.jchess.game;
+package cn.winapk.chinese.jchess.game;
 
 
 public interface IGameView {

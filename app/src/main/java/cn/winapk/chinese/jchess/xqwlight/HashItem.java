@@ -1,4 +1,4 @@
-package com.hzy.chinese.jchess.xqwlight;
+package cn.winapk.chinese.jchess.xqwlight;
 
 /**
  * Created by HZY on 2018/3/8.

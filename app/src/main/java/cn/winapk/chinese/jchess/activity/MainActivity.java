@@ -1,4 +1,4 @@
-package com.hzy.chinese.jchess.activity;
+package cn.winapk.chinese.jchess.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,16 +16,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.blankj.utilcode.util.SnackbarUtils;
 import com.blankj.utilcode.util.StringUtils;
-import com.hzy.chinese.jchess.R;
-import com.hzy.chinese.jchess.game.GameConfig;
-import com.hzy.chinese.jchess.game.GameLogic;
-import com.hzy.chinese.jchess.game.IGameCallback;
-import com.hzy.chinese.jchess.view.GameBoardView;
 
 import java.util.LinkedList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.winapk.chinese.jchess.R;
+import cn.winapk.chinese.jchess.game.GameConfig;
+import cn.winapk.chinese.jchess.game.GameLogic;
+import cn.winapk.chinese.jchess.game.IGameCallback;
+import cn.winapk.chinese.jchess.view.GameBoardView;
 
 public class MainActivity extends AppCompatActivity
         implements IGameCallback {

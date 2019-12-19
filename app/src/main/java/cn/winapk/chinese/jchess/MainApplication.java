@@ -1,4 +1,4 @@
-package com.hzy.chinese.jchess;
+package cn.winapk.chinese.jchess;
 
 import android.app.Application;
 

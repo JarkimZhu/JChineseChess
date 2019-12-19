@@ -1,4 +1,4 @@
-package com.hzy.chinese.jchess.activity;
+package cn.winapk.chinese.jchess.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -20,10 +20,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.StringUtils;
-import com.hzy.chinese.jchess.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.winapk.chinese.jchess.R;
 
 /**
  * Created by tangbull on 2018/3/27.
