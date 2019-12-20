@@ -247,7 +247,6 @@ public class GameLogic implements Runnable {
             playSound(response < 0 ? RESP_WIN : RESP_LOSS);
             showMessage(response < 0 ?
                     R.string.congratulations_you_win : R.string.you_lose_and_try_again);
-            mGameCallback.postResult(response < 0 ? 1 : -1);
             return true;
         }
         int vlRep = pos.repStatus(3);
@@ -258,15 +257,11 @@ public class GameLogic implements Runnable {
             showMessage(vlRep > Position.WIN_VALUE ?
                     R.string.play_too_long_as_lose : vlRep < -Position.WIN_VALUE ?
                     R.string.pc_play_too_long_as_lose : R.string.standoff_as_draw);
-            mGameCallback.postResult(vlRep > Position.WIN_VALUE ?
-                    -1 : vlRep < -Position.WIN_VALUE ?
-                    1 : 0);
             return true;
         }
         if (pos.moveNum > 100) {
             playSound(RESP_DRAW);
             showMessage(R.string.both_too_long_as_draw);
-            mGameCallback.postResult(0);
             return true;
         }
         if (response >= 0) {

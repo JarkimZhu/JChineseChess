@@ -180,11 +180,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void postResult(int result) {
-//        WinApk.INSTANCE.showFullScreenVideo(this, "demo-video", null);
-    }
-
-    @Override
     public void postStartThink() {
         runOnUiThread(() -> mGameProgress.setVisibility(View.VISIBLE));
     }

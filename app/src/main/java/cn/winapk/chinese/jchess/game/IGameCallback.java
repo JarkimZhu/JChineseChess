@@ -13,8 +13,6 @@ public interface IGameCallback {
 
     void postShowMessage(int messageId);
 
-    void postResult(int result);
-
     void postStartThink();
 
     void postEndThink();
