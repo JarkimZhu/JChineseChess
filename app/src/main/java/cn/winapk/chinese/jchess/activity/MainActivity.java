@@ -17,6 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.blankj.utilcode.util.SnackbarUtils;
 import com.blankj.utilcode.util.StringUtils;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.LinkedList;
 
 import butterknife.BindView;
@@ -26,6 +29,9 @@ import cn.winapk.chinese.jchess.game.GameConfig;
 import cn.winapk.chinese.jchess.game.GameLogic;
 import cn.winapk.chinese.jchess.game.IGameCallback;
 import cn.winapk.chinese.jchess.view.GameBoardView;
+import cn.winapk.sdk.IAdCallback;
+import cn.winapk.sdk.WinApk;
+import me.jarkimzhu.advertisement.Event;
 
 public class MainActivity extends AppCompatActivity
         implements IGameCallback {
@@ -68,11 +74,23 @@ public class MainActivity extends AppCompatActivity
                 finish();
                 break;
             case R.id.main_menu_retract:
-                mGameLogic.retract();
+                WinApk.INSTANCE.showFullScreenVideo(this, "demo-video", (s, event, o) -> {
+                    if (event == Event.AD_CLOSE || event == Event.AD_ERROR) {
+                        runOnUiThread(() -> {
+                            mGameLogic.retract();
+                        });
+                    }
+                });
                 break;
             case R.id.main_menu_restart:
-                mGameLogic.restart(mComputerFlip, mHandicapIndex);
-                showMessage(getString(R.string.new_game_started));
+                WinApk.INSTANCE.showFullScreenVideo(this, "demo-video", (s, event, o) -> {
+                    if (event == Event.AD_CLOSE || event == Event.AD_ERROR) {
+                        runOnUiThread(() -> {
+                            mGameLogic.restart(mComputerFlip, mHandicapIndex);
+                            showMessage(getString(R.string.new_game_started));
+                        });
+                    }
+                });
                 break;
             case R.id.main_menu_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
@@ -159,6 +177,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void postShowMessage(int messageId) {
         postShowMessage(getString(messageId));
+    }
+
+    @Override
+    public void postResult(int result) {
+//        WinApk.INSTANCE.showFullScreenVideo(this, "demo-video", null);
     }
 
     @Override

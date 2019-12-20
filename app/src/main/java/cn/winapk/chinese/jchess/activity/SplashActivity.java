@@ -2,6 +2,7 @@ package cn.winapk.chinese.jchess.activity;
 
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -23,7 +24,9 @@ import me.jarkimzhu.advertisement.Event;
 
 public class SplashActivity extends FragmentActivity {
 
-    volatile private static boolean mDataLoaded = false;
+    private static volatile boolean mDataLoaded = false;
+
+    private volatile boolean isSplashFinished = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +37,8 @@ public class SplashActivity extends FragmentActivity {
         String slotId = Objects.requireNonNull(WinApk.INSTANCE.getOptions()).getSplashOptions().getSplashSlotId();
         WinApk.INSTANCE.showSplash(this, Objects.requireNonNull(slotId), R.id.splash_frame_container, (s, event, o) -> {
             if (event == Event.AD_CLOSE || event == Event.AD_ERROR) {
-                SplashActivity.this.runOnUiThread(() -> {
-                    if (mDataLoaded) {
-                        startGame();
-                    }
-                });
+                isSplashFinished = true;
+                startGame();
             }
         });
 
@@ -54,8 +54,10 @@ public class SplashActivity extends FragmentActivity {
                     InputStream is = getAssets().open(GameConfig.DAT_ASSETS_PATH);
                     Position.loadBook(is);
                     mDataLoaded = true;
+                    startGame();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Toast.makeText(SplashActivity.this, "棋谱加载出错，请重新打开试试", Toast.LENGTH_LONG).show();
                 }
             }
         }.start();
@@ -64,14 +66,22 @@ public class SplashActivity extends FragmentActivity {
     @Override
     public void onBackPressed() {
         WinApkSplashView winApkSplashView = findViewById(R.id.winapk_splash);
-        if (winApkSplashView.getState() == WinApkSplashView.State.CLICKED) {
-            startGame();
+        if (winApkSplashView != null) {
+            if (winApkSplashView.getState() == WinApkSplashView.State.CLICKED) {
+                startGame();
+                super.onBackPressed();
+            }
+        } else {
             super.onBackPressed();
         }
     }
 
     private void startGame() {
-        ActivityUtils.startActivity(MainActivity.class);
-        finish();
+        runOnUiThread(() -> {
+            if (mDataLoaded && isSplashFinished) {
+                ActivityUtils.startActivity(MainActivity.class);
+                finish();
+            }
+        });
     }
 }

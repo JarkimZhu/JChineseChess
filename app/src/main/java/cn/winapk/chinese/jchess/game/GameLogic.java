@@ -9,7 +9,18 @@ import cn.winapk.chinese.jchess.R;
 import cn.winapk.chinese.jchess.xqwlight.Position;
 import cn.winapk.chinese.jchess.xqwlight.Search;
 
-import static cn.winapk.chinese.jchess.game.GameConfig.*;
+import static cn.winapk.chinese.jchess.game.GameConfig.MAX_HISTORY_SIZE;
+import static cn.winapk.chinese.jchess.game.GameConfig.RESP_CAPTURE;
+import static cn.winapk.chinese.jchess.game.GameConfig.RESP_CAPTURE2;
+import static cn.winapk.chinese.jchess.game.GameConfig.RESP_CHECK;
+import static cn.winapk.chinese.jchess.game.GameConfig.RESP_CHECK2;
+import static cn.winapk.chinese.jchess.game.GameConfig.RESP_CLICK;
+import static cn.winapk.chinese.jchess.game.GameConfig.RESP_DRAW;
+import static cn.winapk.chinese.jchess.game.GameConfig.RESP_ILLEGAL;
+import static cn.winapk.chinese.jchess.game.GameConfig.RESP_LOSS;
+import static cn.winapk.chinese.jchess.game.GameConfig.RESP_MOVE;
+import static cn.winapk.chinese.jchess.game.GameConfig.RESP_MOVE2;
+import static cn.winapk.chinese.jchess.game.GameConfig.RESP_WIN;
 
 public class GameLogic implements Runnable {
 
@@ -236,6 +247,7 @@ public class GameLogic implements Runnable {
             playSound(response < 0 ? RESP_WIN : RESP_LOSS);
             showMessage(response < 0 ?
                     R.string.congratulations_you_win : R.string.you_lose_and_try_again);
+            mGameCallback.postResult(response < 0 ? 1 : -1);
             return true;
         }
         int vlRep = pos.repStatus(3);
@@ -246,11 +258,15 @@ public class GameLogic implements Runnable {
             showMessage(vlRep > Position.WIN_VALUE ?
                     R.string.play_too_long_as_lose : vlRep < -Position.WIN_VALUE ?
                     R.string.pc_play_too_long_as_lose : R.string.standoff_as_draw);
+            mGameCallback.postResult(vlRep > Position.WIN_VALUE ?
+                    -1 : vlRep < -Position.WIN_VALUE ?
+                    1 : 0);
             return true;
         }
         if (pos.moveNum > 100) {
             playSound(RESP_DRAW);
             showMessage(R.string.both_too_long_as_draw);
+            mGameCallback.postResult(0);
             return true;
         }
         if (response >= 0) {
