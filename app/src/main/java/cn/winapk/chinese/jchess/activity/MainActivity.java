@@ -70,14 +70,14 @@ public class MainActivity extends AppCompatActivity
                 finish();
                 break;
             case R.id.main_menu_retract:
-                WinApk.INSTANCE.showFullScreenVideo(this, "demo-video", (s, event, o) -> {
+                WinApk.INSTANCE.showFullScreenVideo(this, "test-001", (s, event, o) -> {
                     if (event == Event.VD_CLOSE || event == Event.AD_ERROR) {
                         runOnUiThread(() -> mGameLogic.retract());
                     }
                 });
                 break;
             case R.id.main_menu_restart:
-                WinApk.INSTANCE.showFullScreenVideo(this, "demo-video", (s, event, o) -> {
+                WinApk.INSTANCE.showFullScreenVideo(this, "test-001", (s, event, o) -> {
                     if (event == Event.VD_CLOSE || event == Event.AD_ERROR) {
                         runOnUiThread(() -> {
                             mGameLogic.restart(mComputerFlip, mHandicapIndex);

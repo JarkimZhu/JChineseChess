@@ -32,14 +32,14 @@ public class SplashActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        WinApk.INSTANCE.requestAllSdkPermissions(this, null);
-
-        String slotId = Objects.requireNonNull(WinApk.INSTANCE.getOptions()).getSplashOptions().getSplashSlotId();
-        WinApk.INSTANCE.showSplash(this, Objects.requireNonNull(slotId), R.id.splash_frame_container, (s, event, o) -> {
-            if (event == Event.AD_CLOSE || event == Event.AD_ERROR) {
-                isSplashFinished = true;
-                startGame();
-            }
+        WinApk.INSTANCE.requestAllSdkPermissions(this, integer -> {
+            String slotId = Objects.requireNonNull(WinApk.INSTANCE.getOptions()).getSplashOptions().getSplashSlotId();
+            WinApk.INSTANCE.showSplash(SplashActivity.this, Objects.requireNonNull(slotId), R.id.splash_frame_container, (s, event, o) -> {
+                if (event == Event.AD_CLOSE || event == Event.AD_ERROR) {
+                    isSplashFinished = true;
+                    startGame();
+                }
+            });
         });
 
         loadBookAndStartGame();
