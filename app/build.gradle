@@ -46,7 +46,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.blankj:utilcode:1.25.9'
     implementation 'com.jakewharton:butterknife:10.1.0'
     implementation 'cn.winapk.sdk:winapk-sdk-view:0.1.0-SNAPSHOT'
